@@ -1,0 +1,20 @@
+
+table{
+    border-collapse: collapse;
+}
+td, th{
+    width: 200px;
+    height: 50px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.employees{
+    padding-left: 20px;
+    text-align: left;
+}
+
+tr.active{
+    background-color: darkred;
+    color: white;
+}
