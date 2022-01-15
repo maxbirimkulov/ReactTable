@@ -1,0 +1,13 @@
+.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+nav {
+  padding: 0 70px;
+}
+
+.nav-search {
+  width: 170px;
+}

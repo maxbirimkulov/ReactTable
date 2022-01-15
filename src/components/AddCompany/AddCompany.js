@@ -1,72 +1,65 @@
-import React, {useState} from 'react';
-import {useDispatch} from "react-redux";
-import {addCompany} from "../../Redux/Reducers/table";
-import {useNavigate} from "react-router-dom";
+import React, {useState} from "react";
+import "./addCompany.css";
 
-const AddCompany = () => {
-    const dispatch = useDispatch();
-    const [name, setName] = useState('');
-    const [logo, setLogo] = useState('');
-    const [description, setDescription] = useState('');
-    const [employees, setEmployees] = useState([]);
-    const navigate = useNavigate();
-
-    const addEmployee = (e) => {
-        e.preventDefault();
-        setEmployees([...employees, {
-            name: e.target[0].value,
-            surname: e.target[1].value,
-            age: e.target[2].value,
-            check: false,
-            id: employees.length + 1}]);
-        e.target.reset();
-
-
-    };
-
+const AddCompany = ({employees, setEmployees,addEmployee, deleteUser}) => {
     return (
-        <div>
+        <>
+            <form method='POST' action='http://localhost:8080/add' className="addCompany">
                 <div>
                     <label>
-                        название компании
-                        <input type="text" value={name} onChange={(e)=> setName(e.target.value)}/>
+                        Название компании
+                        <input
+                            name='companyName'
+                            required
+                            type="text"
+                        />
                     </label>
                 </div>
                 <div>
                     <label>
                         Логотип
-                        <input type="text" value={logo} onChange={(e)=> setLogo(e.target.value)}/>
+                        <input
+                            name='companyLogo'
+                            required
+                            type="text"
+                        />
                     </label>
                 </div>
                 <div>
                     <label>
                         Описание
-                        <textarea cols="30" rows="10" value={description} onChange={(e)=> setDescription(e.target.value)}/>
+                        <textarea
+                            name='description'
+                            cols="30"
+                            rows="10"
+                        />
                     </label>
                 </div>
+                <ul>
+                    {employees.map((item) => (
+                        <li key={item.id} className='list-item'>
+                          <span className='user'>{item.name} {item.surname} {item.age} {/\d*1\d$/.test(item.age) || /[05-9]$/.test(item.age) ? 'лет' : (/1$/.test(item.age) ? 'год' : 'года')}</span>
 
-            <form onSubmit={addEmployee}>
-                <input  placeholder='name' type="text" />
-                <input  placeholder='surname' type="text"/>
-                <input  placeholder='age' type="number"/>
-                <button type='submit'>+</button>
+                            <span className='delete-user' onClick={() => deleteUser(item.id)}>X</span>
+
+                        </li>
+                    ))}
+                </ul>
+                <input type="hidden" name='employees' value={JSON.stringify(employees)}/>
+                <button type="submit">
+                    добавить компанию
+                </button>
             </form>
 
-            <ul>
-                {employees.map((item)=>(
-                    <li key={item.id}>Name: {item.name}; Surname: {item.surname}; Age: {item.age}</li>
-                ))}
-            </ul>
+            <form onSubmit={addEmployee}>
+                <h5>Добавить сотрудников</h5>
+                <input required placeholder="name" type="text"/>
+                <input required placeholder="surname" type="text"/>
+                <input required placeholder="age" type="number"/>
+                <button type="submit">+</button>
+            </form>
+        </>
 
-            <button onClick={()=>{
-                dispatch(addCompany(name, logo , description, employees));
-                navigate(`/company/${name}`);
-                setName('');
-                setLogo('');
-                setDescription('');
-                setEmployees([])
-            } } type='button'>добавить компанию</button>
-        </div>
     );
 };
 

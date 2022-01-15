@@ -1,0 +1,27 @@
+textarea {
+  padding: 5px 6px;
+  resize: none;
+}
+
+.list-item{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+
+}
+
+.user{
+  border-bottom: 1px solid black;
+}
+
+.delete-user{
+    color: red;
+   font-size: 20px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.delete-user:hover{
+  color: black;
+  transition: .3s;
+}
