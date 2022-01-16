@@ -4,7 +4,7 @@ import "./addCompany.css";
 const AddCompany = ({employees, setEmployees,addEmployee, deleteUser}) => {
     return (
         <>
-            <form method='POST' action='/8080/add' className="addCompany">
+            <form method='POST' action='http://localhost:8080/add' className="addCompany">
                 <div>
                     <label>
                         Название компании
