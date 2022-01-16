@@ -4,7 +4,7 @@ const cors = require('cors');
 const addRoute = require('./Routes/add');
 const companiesRoute = require('./Routes/companies');
 
-const PORT = 8080;
+const PORT = process.env.PORT  ||  8080;
 
 server.use(cors());
 server.use(express.urlencoded({
@@ -16,7 +16,7 @@ server.use(companiesRoute);
 
 
 server.listen(PORT, ()=>{
-    console.log(`Твой сервер запущен на http://localhost:8080`)
+    console.log(`Твой сервер запущен на `)
 });
 
 
