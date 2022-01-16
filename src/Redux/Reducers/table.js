@@ -94,7 +94,7 @@ export const changeAll = (companyId) => {
 
 export const getCompanies = () => {
     return (dispatch) => {
-      axios('http://localhost:8080/companies').then(({data})=>{
+      axios('/companies').then(({data})=>{
         return dispatch({type:GET_COMPANIES, arr: data})
       })
     }
@@ -102,7 +102,7 @@ export const getCompanies = () => {
 
 export const deleteCompany = (id) => {
   return (dispatch) => {
-    axios.delete(`http://localhost:8080/delete/${id}`)
+    axios.delete(`/delete/${id}`)
         .then(({data})=>  {
           return dispatch({type:DELETE, arr: data})
         })

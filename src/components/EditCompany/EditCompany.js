@@ -11,7 +11,7 @@ const EditCompany = ({employees, setEmployees, deleteUser, addEmployee}) => {
         <div>
             {company ?
             <>
-                <form method='POST' action={`http://localhost:8080/edit/${company.id}`} className="addCompany">
+                <form method='POST' action={`/edit/${company.id}`} className="addCompany">
                     <div>
                         <label>
                             Название компании
